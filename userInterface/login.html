@@ -1,0 +1,88 @@
+<html>
+
+    <head>
+        <meta charset=”UTF-8">
+        <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
+        <meta http-equiv=”X-UA-Compatible” content=”ie=edge”>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
+        <link rel="stylesheet" type="text/css" href="css/main.css"> 
+        <script src=”./node_modules/web3/dist/web3.min.js”></script>
+    </head>
+
+    <body>
+
+        <!-- navbar -->  
+        <nav class="navbar navbar-expand-lg fixed-top ">  
+            <a class="navbar-brand" href="#">NTUFriend</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">  
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">     
+            
+                <ul class="navbar-nav mr-4">
+                        <li class="nav-item">
+                            <a class="nav-link" data-value="home" href="index.html">Home</a>        
+                        </li>  
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-value="about" href="about.html">About</a>        
+                        </li>  
+
+                        <li class="nav-item">
+                            <a class="nav-link " data-value="log in" href="login.html">Log In</a>    
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " data-value="sign up" href="signup.html">Sign Up</a>    
+                        </li>
+ 
+                </ul> 
+            </div>
+        </nav>
+
+        <header class="header">
+            <div class="description text-center">
+                <h1> Log In Page </h1>
+
+                <br> 
+
+                <h5>
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+
+                        <br> <br>
+                
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+
+                        <br><br>
+                        
+                        <button class="btn btn-outline-secondary btn-lg" onclick="window.location.href = 'home.html';">Login</button>
+                    </div>  
+                </h5>  
+            </div>
+    
+        </header>
+        <script src=”https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script>
+            if (typeof web3 !== ‘undefined’) 
+            {
+            web3 = new Web3(web3.currentProvider);
+            } 
+            else 
+            {
+            web3 = new HDWalletProvider(
+                    'drift loop width rose memory idea steel match rude involve tattoo dust',
+                    'https://rinkeby.infura.io/v3/287018d520ee42b8adfbb97ca4daa62b'
+                );
+            }
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            var discussionContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"question","type":"string"}],"name":"newQuestionID","outputs":[{"name":"questionIndex","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"username","type":"string"},{"name":"majorMinor","type":"string"},{"name":"password","type":"string"}],"name":"createPersonal","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"replyIndex","type":"uint256"},{"name":"questionIndex","type":"uint256"}],"name":"giveLikeRe","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"createAccount","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"replyMsg","type":"string"},{"name":"questionIndex","type":"uint256"}],"name":"replyQuestion","outputs":[{"name":"replyIndex","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"questionIndex","type":"uint256"}],"name":"giveLikeQn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]);
+            var discussion = discussionContract.at('0x232291dED608C2a6080f9B0D03e33DC69f499D54');
+        </script>
+
+    </body>
+</html>
